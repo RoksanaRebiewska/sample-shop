@@ -1,0 +1,13 @@
+@use '../../../base';
+@use '../../../media';
+
+.pdp-section {
+  margin: 5rem 5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include media.mobile {
+    margin: 0;
+    grid-template-columns: 1fr;
+  }
+}

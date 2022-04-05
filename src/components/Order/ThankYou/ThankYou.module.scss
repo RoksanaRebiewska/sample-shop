@@ -1,0 +1,7 @@
+@use '../../../base';
+
+.thank-you {
+  h1 {
+    @include base.confirmation-h1;
+  }
+}

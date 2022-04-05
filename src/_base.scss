@@ -1,0 +1,53 @@
+//font
+$primary-font: 'Kumbh Sans', sans-serif;
+
+//colors
+$primary-orange: hsl(26, 100%, 55%);
+$primary-orange-light:hsl(25, 100%, 74%);
+$primary-orange-verylight: hsl(25, 100%, 94%);
+$gray-dark: hsl(220, 13%, 13%);
+$gray-mid: hsl(219, 9%, 45%);
+$gray-light: hsl(220, 14%, 75%);
+$gray-verylight: hsl(223, 64%, 98%);
+$red: hsl(0, 100%, 50%);
+$white: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 0%);
+
+//borders
+$border-image: 2px solid transparent;
+$border-image-active: 2px solid $primary-orange;
+$border-link: 4px solid transparent;
+$border-link-active: 4px solid $primary-orange;
+
+//border-radius
+$border-radius-standard: 1rem;
+$border-radius-small: .5rem;
+$border-radius-big: 5rem;
+$border-radius-round: 50%;
+$border-radius-none: 0;
+
+//others
+$box-shadow: 5px 5px 25px $gray-dark;
+$transition-standard: all .3s ease-in;
+
+
+//mixins
+@mixin transform-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+@mixin confirmation-h1 {
+  @include transform-center;
+  color: $gray-dark;
+  position: fixed;
+}

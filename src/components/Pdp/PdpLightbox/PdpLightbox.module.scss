@@ -1,0 +1,116 @@
+@use '../../../base';
+@use '../../../media';
+
+.pdp-lightbox-background {
+  @include base.full-screen;
+  z-index: 20;
+  background: base.$black;
+  opacity: .8;
+
+  @include media.mobile {
+    display: none;
+  }
+}
+
+.pdp-lightbox-div {
+  @include base.transform-center;
+  position: absolute;
+  z-index: 99;
+  width: 500px;
+  height: auto;
+  animation: slide-down .3s ease-out;
+
+  @include media.mobile {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+
+    &#close-icon {
+      width: 20px;
+      height: auto;
+      position: absolute;
+      right: 0;
+      top: -1rem;
+      filter: brightness(100);
+      transition: base.$transition-standard;
+
+      &:hover {
+        cursor: pointer;
+        filter: grayscale(70%) brightness(60%) sepia(80%) hue-rotate(-50deg) saturate(600%) contrast(0.9);
+      }
+    }
+
+    &#main-lightbox {
+      width: 100%;
+      border-radius: base.$border-radius-standard;
+      margin: 1.5rem 0;
+    }
+  }
+
+  .pdp-lightbox-teasers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 0 2rem;
+
+    img {
+      border-radius: base.$border-radius-small;
+      width: 100%;
+      border: base.$border-image;
+      transition: base.$transition-standard;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  #previous {
+    @extend %previous-next;
+    left: -1.5rem;
+  }
+  
+  #next {
+    @extend %previous-next;
+    right: -1.5rem;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+%previous-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-100%);
+  background: base.$white;
+  border-radius: base.$border-radius-round;
+  border: none;
+  z-index: 999;
+  transition: base.$transition-standard;
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      filter: grayscale(70%) brightness(5) sepia(80%) hue-rotate(-50deg) saturate(600%) contrast(0.9);
+    }
+  }
+
+  img {
+    margin: 1rem;
+    width: .8rem;
+    height: auto;
+    transition: base.$transition-standard;
+  }
+}

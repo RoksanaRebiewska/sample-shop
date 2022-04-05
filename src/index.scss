@@ -1,0 +1,19 @@
+@use './base';
+
+body {
+  margin: 0 auto;
+  font-family: base.$primary-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.active-image {
+  border: base.$border-image-active !important;
+  opacity: .5;
+}

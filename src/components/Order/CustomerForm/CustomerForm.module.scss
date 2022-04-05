@@ -1,0 +1,43 @@
+@use '../../../base';
+
+.form-header {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.customer-form {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    margin: .5rem 0 1rem;
+    border-radius: base.$border-radius-small;
+    padding: .5rem;
+    border: 1px solid base.$gray-light;
+
+    &.error {
+      border: 1px solid base.$red;
+    }
+  }
+
+  #order {
+    width: 200px;
+    padding: 1rem 0;
+    margin: 2rem auto 1rem;
+    background: base.$primary-orange;
+    border: none;
+    border-radius: base.$border-radius-small;
+    color: base.$white;
+    height: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: base.$transition-standard;
+    
+    &:hover {
+      cursor: pointer;
+      background:  base.$primary-orange-light;
+    }
+  }
+}

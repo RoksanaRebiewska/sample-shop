@@ -1,24 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useState, useCallback, useEffect } from 'react';
+
+import ApiService from './Api.service';
+
+import Navigation from './components/Menu/Navigation/Navigation';
+import Pdp from './components/Pdp/Pdp/Pdp';
+import LoadingSpinner from './components/LoadingSpinner';
+import OrderConfirmation from './components/Order/OrderConfirmation/OrderConfirmation';
+import ThankYou from './components/Order/ThankYou/ThankYou';
+import Welcome from './components/Welcome';
+import SomethingWentWrong from './components/Order/SomethingWentWrong/SomethingWentWrong';
 
 function App() {
+  const [products, setProducts] = useState([]);
+
+  const getDataHandler = useCallback(async () => {
+    try {
+      const productsList = await ApiService.httpGet('products.json');
+
+      setProducts(productsList);
+    } catch (error) {
+      alert('Something went wrong, please reload');
+    }
+  });
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact>
+          <Welcome />
+        </Route>
+        <Route path="/:productId">
+          {products.length === 0 ? <LoadingSpinner /> : <Pdp data={products} />}
+        </Route>
+        <Route path="/order-confirmation">
+          <OrderConfirmation />
+        </Route>
+        <Route path="/thank-you">
+          <ThankYou />
+        </Route>
+        <Route path="/error">
+          <SomethingWentWrong />
+        </Route>
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

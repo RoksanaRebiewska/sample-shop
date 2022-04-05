@@ -1,0 +1,48 @@
+@use '../../../base';
+@use '../../../media';
+
+.order-confirmation {
+  margin: 3rem auto;
+  max-width: 400px;
+
+  @include media.mobile {
+    margin: 3rem 2rem;
+  }
+
+  h1 {
+    color: base.$gray-dark;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .order-empty-cart {
+    color: base.$gray-mid;
+    font-size: 1rem;
+    text-align: center;
+    margin: 5rem 0;
+  }
+
+  .order-details {
+    display: grid;
+    grid-template-columns: 5fr 10fr 1fr;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+
+    img {
+      width: 100%;
+      border-radius: base.$border-radius-small;
+    }
+  }
+
+  .order-total {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: base.$gray-dark;
+    text-align: right;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid base.$gray-light;
+  }
+}
+
+
