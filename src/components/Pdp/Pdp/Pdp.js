@@ -54,58 +54,25 @@ const Pdp = ({ data }) => {
 
   let i = imgIndex;
 
-  const backFromFirst = (name) => {
-    name.current.src =
-      imageRef.current[imageRef.current.length - 1].dataset.src;
-    setImgIndex(imageRef.current.length - 1);
-  };
-
-  const back = (name) => {
-    name.current.src = imageRef.current[--i].dataset.src;
-    setImgIndex(i);
-  };
-
-  const previousHandler = () => {
+  const previousHandler = (refName) => {
     if (imgIndex === 0) {
-      backFromFirst(mainImageRef);
+      refName.current.src =
+        imageRef.current[imageRef.current.length - 1].dataset.src;
+      setImgIndex(imageRef.current.length - 1);
     } else {
-      back(mainImageRef);
+      refName.current.src = imageRef.current[--i].dataset.src;
+      setImgIndex(i);
     }
   };
 
-  const previousLightboxHandler = () => {
-    if (imgIndex === 0) {
-      backFromFirst(mainLighboxRef);
-    } else {
-      back(mainLighboxRef);
-    }
-  };
-
-  const forward = (name) => {
-    name.current.src = imageRef.current[++i].dataset.src;
-    setImgIndex(i);
-  };
-
-  const forwardFromLast = (name) => {
-    name.current.src = imageRef.current[0].dataset.src;
-    setImgIndex(0);
-  };
-
-  const nextHandler = () => {
+  const nextHandler = (refName) => {
     imageRef.current.forEach((el) => (el.className = ''));
     if (i < imageRef.current.length - 1) {
-      forward(mainImageRef);
+      refName.current.src = imageRef.current[++i].dataset.src;
+      setImgIndex(i);
     } else {
-      forwardFromLast(mainImageRef);
-    }
-  };
-
-  const nextLightboxHandler = () => {
-    imageRef.current.forEach((el) => (el.className = ''));
-    if (i < imageRef.current.length - 1) {
-      forward(mainLighboxRef);
-    } else {
-      forwardFromLast(mainLighboxRef);
+      refName.current.src = imageRef.current[0].dataset.src;
+      setImgIndex(0);
     }
   };
 
@@ -116,8 +83,8 @@ const Pdp = ({ data }) => {
         lightboxToggle={lightboxToggleHandler}
         ref={{ mainImageRef, imageRef }}
         imageChangeHandler={imageChangeHandler}
-        previousHandler={previousHandler}
-        nextHandler={nextHandler}
+        previousHandler={() => previousHandler(mainImageRef)}
+        nextHandler={() => nextHandler(mainImageRef)}
       />
       {lightboxOpen && (
         <PdpLightbox
@@ -125,8 +92,8 @@ const Pdp = ({ data }) => {
           lightboxToggle={lightboxToggleHandler}
           ref={{ mainLighboxRef, imageRef }}
           lightboxChangeHandler={lightboxChangeHandler}
-          previousLightboxHandler={previousLightboxHandler}
-          nextLightboxHandler={nextLightboxHandler}
+          previousHandler={() => previousHandler(mainLighboxRef)}
+          nextHandler={() => nextHandler(mainLighboxRef)}
           imgIndex={imgIndex}
         />
       )}

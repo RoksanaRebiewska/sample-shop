@@ -13,8 +13,8 @@ const PdpLightbox = React.forwardRef(
       productImages,
       ProductOne,
       lightboxChangeHandler,
-      previousLightboxHandler,
-      nextLightboxHandler,
+      previousHandler,
+      nextHandler,
       imgIndex,
     },
     ref
@@ -56,10 +56,10 @@ const PdpLightbox = React.forwardRef(
               />
             ))}
           </div>
-          <button id={classes.previous} onClick={previousLightboxHandler}>
+          <button id={classes.previous} onClick={previousHandler}>
             <img src={previousIcon} />
           </button>
-          <button id={classes.next} onClick={nextLightboxHandler}>
+          <button id={classes.next} onClick={nextHandler}>
             <img src={nextIcon} />
           </button>
         </div>
