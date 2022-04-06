@@ -1,7 +1,7 @@
 @use '../../../base';
 @use '../../../media';
 
-.pdp-lightbox-background {
+.pdp-lightbox-backdrop {
   @include base.full-screen;
   z-index: 20;
   background: base.$black;
