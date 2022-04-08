@@ -25,7 +25,7 @@ const OrderConfirmation = () => {
       {data.length !== 0 &&
         data.map((item) => (
           <div key={item.id} className={classes['order-details']}>
-            <img src={item.image} />
+            <img src={item.image} alt={item.name} />
             <div>
               <p>{item.name}</p>
               <p>
@@ -35,7 +35,11 @@ const OrderConfirmation = () => {
                 </span>
               </p>
             </div>
-            <img src={Delete} onClick={() => removeItemHandler(item.id)} />
+            <img
+              src={Delete}
+              alt="delete"
+              onClick={() => removeItemHandler(item.id)}
+            />
           </div>
         ))}
       {data.length !== 0 && (

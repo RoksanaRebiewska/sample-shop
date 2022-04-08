@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import ApiService from './Api.service';
 
@@ -11,15 +11,10 @@ import ThankYou from './components/Order/ThankYou/ThankYou';
 import Welcome from './components/Welcome';
 import SomethingWentWrong from './components/Order/SomethingWentWrong/SomethingWentWrong';
 
-import ImageOne from './assets/image-product-1.jpg';
-import ImageTwo from './assets/image-product-2.jpg';
-import ImageThree from './assets/image-product-3.jpg';
-import ImageFour from './assets/image-product-4.jpg';
-
 function App() {
   const [products, setProducts] = useState([]);
 
-  const getDataHandler = useCallback(async () => {
+  const getDataHandler = async () => {
     try {
       const productsList = await ApiService.httpGet('products.json');
 
@@ -27,7 +22,7 @@ function App() {
     } catch (error) {
       alert('Something went wrong, please reload');
     }
-  });
+  };
 
   useEffect(() => {
     getDataHandler();
@@ -35,12 +30,12 @@ function App() {
 
   return (
     <>
-      <Navigation />
+      <Navigation data={products} />
       <Switch>
         <Route path="/" exact>
           <Welcome data={products} />
         </Route>
-        <Route path="/:productId">
+        <Route path="/products/:productId">
           {products.length === 0 ? <LoadingSpinner /> : <Pdp data={products} />}
         </Route>
         <Route path="/order-confirmation">

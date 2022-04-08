@@ -9,9 +9,6 @@ import PdpLightbox from '../PdpLightbox/PdpLightbox';
 const Pdp = ({ data }) => {
   const params = useParams();
 
-  const paramsArray = data.map((item) => item.id.indexOf(params.productId));
-  const itemIndex = paramsArray.indexOf(0);
-
   const {
     images,
     id,
@@ -22,7 +19,7 @@ const Pdp = ({ data }) => {
     discount,
     standardPrice,
     mainImage,
-  } = data[itemIndex];
+  } = data[params.productId];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);

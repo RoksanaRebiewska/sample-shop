@@ -20,21 +20,7 @@ const httpGet = async (endpoint) => {
 
   const data = await handleResponse(response);
 
-  const productsList = [];
-  for (const key in data) {
-    productsList.push({
-      collection: data[key].collection,
-      name: data[key].name,
-      description: data[key].description,
-      price: data[key].price,
-      standardPrice: data[key].standardPrice,
-      mainImage: data[key].mainImage,
-      images: data[key].images,
-      id: key,
-    });
-  }
-
-  return productsList;
+  return data;
 };
 
 const httpPost = async (endpoint, data) => {
